@@ -14,7 +14,7 @@ namespace VoxCake.Common
             }
             else
             {
-                throw new LoggerIsNullException();
+                Logger = new DefaultLogger();
             }
         }
 
@@ -26,7 +26,7 @@ namespace VoxCake.Common
             }
             else
             {
-                throw new LoggerIsNullException();
+                Logger = new DefaultLogger();
             }
         }
 
@@ -38,7 +38,7 @@ namespace VoxCake.Common
             }
             else
             {
-                throw new LoggerIsNullException();
+                Logger = new DefaultLogger();
             }
         }
     }
