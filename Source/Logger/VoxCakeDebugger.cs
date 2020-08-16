@@ -1,44 +1,58 @@
-﻿using VoxCake.Common.Internal;
+﻿using System;
 
-namespace VoxCake.Common
+namespace VoxCake.Common.Logger
 {
     public static class VoxCakeDebugger
     {
         public static ILogger Logger { private get; set; }
 
-        public static void LogInfo(string log)
+        public static void Log(string log)
         {
-            if(Logger != null)
-            {
-                Logger.Log(log);
-            }
-            else
-            {
-                Logger = new DefaultLogger();
-            }
+            ValidateLogger();
+            Logger?.Log(log);
+        }
+        
+        public static void Log(object sender, string log)
+        {
+            var message = sender == null ? log : $"{sender.GetType().Name} : {log}";
+            
+            ValidateLogger();
+            Logger?.Log(message);
         }
 
-        public static void LogWarning(string log)
+        public static void Warning(string log)
         {
-            if (Logger != null)
-            {
-                Logger.Warning(log);
-            }
-            else
-            {
-                Logger = new DefaultLogger();
-            }
+            ValidateLogger();
+            Logger?.Warning(log);
+        }
+        
+        public static void Warning(object sender,string log)
+        {
+            var message = sender == null ? log : $"{sender.GetType().Name} : {log}";
+            
+            ValidateLogger();
+            Logger?.Warning(message);
         }
 
-        public static void LogError(string log)
+        public static void Error(string log)
         {
-            if (Logger != null)
+            ValidateLogger();
+            Logger?.Error(log);
+        }
+        
+        public static void Error(object sender, string log)
+        {
+            var message = sender == null ? log : $"{sender.GetType().Name} : {log}";
+            
+            ValidateLogger();
+            Logger?.Error(message);
+        }
+
+        private static void ValidateLogger()
+        {
+            if (Logger == null)
             {
-                Logger.Error(log);
-            }
-            else
-            {
-                Logger = new DefaultLogger();
+                throw new Exception("Logger not setted up!");
             }
         }
     }

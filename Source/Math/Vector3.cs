@@ -1,4 +1,4 @@
-﻿namespace VoxCake.Common
+﻿namespace VoxCake.Common.Math
 {
     public struct Vector3
     {

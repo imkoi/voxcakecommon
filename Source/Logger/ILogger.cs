@@ -1,4 +1,4 @@
-﻿namespace VoxCake.Common
+﻿namespace VoxCake.Common.Logger
 {
     public interface ILogger
     {
